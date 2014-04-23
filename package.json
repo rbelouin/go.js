@@ -10,5 +10,9 @@
     "webrtc"
   ],
   "author": "rbelouin <rodolphe.belouin@gmail.com>",
-  "license": "BSD"
+  "license": "BSD",
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-bower-concat": "^0.2.4"
+  }
 }

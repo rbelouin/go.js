@@ -1,3 +1,4 @@
 *.swp
 /bower_components
+/dependencies.js
 /node_modules
