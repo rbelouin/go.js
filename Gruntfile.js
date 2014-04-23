@@ -7,7 +7,7 @@ module.exports = function(grunt) {
     },
     concat: {
       all: {
-        src: ["dependencies.js", "src/board.js"],
+        src: ["dependencies.js", "src/board.js", "src/game.js"],
         dest: "go.js"
       }
     },
