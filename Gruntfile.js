@@ -4,10 +4,17 @@ module.exports = function(grunt) {
       all: {
         dest: "dependencies.js"
       }
+    },
+    concat: {
+      all: {
+        src: ["dependencies.js", "src/board.js"],
+        dest: "go.js"
+      }
     }
   });
 
   grunt.loadNpmTasks("grunt-bower-concat");
+  grunt.loadNpmTasks("grunt-contrib-concat");
 
-  grunt.registerTask("default", ["bower_concat"]);
+  grunt.registerTask("default", ["bower_concat", "concat"]);
 };
