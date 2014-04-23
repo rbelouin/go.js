@@ -1,0 +1,24 @@
+{
+  "name": "go.js",
+  "version": "0.0.0",
+  "authors": [
+    "rbelouin <rodolphe.belouin@gmail.com>"
+  ],
+  "description": "Go game, in your brower, using WebRTC.",
+  "main": "go.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "go",
+    "game",
+    "rtc",
+    "webrtc"
+  ],
+  "license": "BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}
