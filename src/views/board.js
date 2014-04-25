@@ -32,6 +32,12 @@ function init$Board() {
 
     var $stones = $board.elem.append('g').classed('stones', true).attr('transform', 'translate(' + size.width + ', ' + size.height + ')');
 
+    $board.clicks = Bacon.fromBinder(function(sink) {
+      $board.elem.on("click", function() {
+        sink(d3.mouse($board.elem.node()));
+      });
+    }).map(_.partial($Board.mouseEvent2coordinates, $board));
+
     return $board;
   };
 
@@ -53,6 +59,28 @@ function init$Board() {
         .attr("transform", "translate(" + (size.width*x) + ", " + (size.height*y) + ")")
       .insert("circle")
         .attr("r", d3.min([size.height, size.width]) * 2 / 5);
+  };
+
+  $Board.mouseEvent2coordinates = function($board, mouse) {
+    var size = $Board.getSize($board);
+    var x = Math.round(mouse[0] / size.width - 1);
+    var y = Math.round(mouse[1] / size.height - 1);
+
+    return {
+      x: x < 0 ? 0 : x,
+      y: y < 0 ? 0 : y
+    };
+  };
+
+  $Board.displayBoard = function($board, board) {
+    var $stones = $board.elem.select(".stones");
+    $stones.selectAll(".stone").remove();
+
+    _.each(board, function(intersection) {
+      if(intersection.type != Board.types.EMPTY) {
+        $Board.addStone($board, intersection.x, intersection.y, intersection.type);
+      }
+    });
   };
 
   return $Board;

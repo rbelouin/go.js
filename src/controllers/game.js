@@ -7,6 +7,7 @@ function initGameController() {
 
     controller.game = Game(settings);
     controller.isBlack = settings && settings.isBlack;
+    controller.gameStates = new Bacon.Bus();
 
     return controller;
   };
@@ -16,8 +17,10 @@ function initGameController() {
 
     result.map(function(game) {
       controller.game = game;
+      controller.gameStates.push(game);
 
       if(game.cumulativePassings >= 2) {
+        controller.gameStates.end();
         Controller.end(controller);
       }
     });
