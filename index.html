@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Go.js</title>
+
+  <script type="text/javascript" src="go.js"></script>
+
+  <style type="text/css">
+    svg.board {
+      background-color: #AAAAAA;
+    }
+
+    svg.board .grids line {
+      stroke: #000;
+      stroke-width: 1px;
+    }
+
+    svg.board .stones .stone.BLACK {
+      fill: #000;
+    }
+    svg.board .stones .stone.WHITE {
+      fill: #fff;
+    }
+  </style>
+</head>
+<body>
+	<h1>Go.js</h1>
+
+  <svg class="board BLACK" height="400" width="400"></svg>
+  <svg class="board WHITE" height="400" width="400"></svg>
+
+  <script type="text/javascript" src="src/main.js"></script>
+</body>
+</html>
