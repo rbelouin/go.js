@@ -17,5 +17,9 @@
     "grunt-contrib-concat": "^0.4.0",
     "grunt-contrib-jasmine": "^0.6.3",
     "grunt-contrib-watch": "^0.6.1"
+  },
+  "dependencies": {
+    "socket.io": "^0.9.16",
+    "node-static": "^0.7.3"
   }
 }
