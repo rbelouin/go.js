@@ -6,12 +6,14 @@ describe("WSClient", function() {
       host: "http://127.0.0.1:8080"
     });
 
-    client.stream.onValue(function(message) {
-      expect(message).toBe("Hello World!");
-      done();
+    client.socket.map(function(socket) {
+      socket.on("message", function(message) {
+        expect(message).toBe("Hello World!");
+        done();
+      });
     });
 
     WSClient.connect(client);
-    WSClient.send(client, "Hello World!");
+    WSClient.send(client, "message", "Hello World!");
   });
 });
