@@ -1,5 +1,6 @@
 var Board = initBoard();
 var $Board = init$Board();
+var $Pass = init$Pass();
 var GameController = initGameController();
 var WebRTCClient = initWebRTCClient();
 var WSClient = initWSClient();
@@ -10,6 +11,13 @@ var coordinates2command = function(color, coordinates) {
     color: color,
     x: coordinates.x,
     y: coordinates.y
+  };
+};
+
+var pass2command = function(color) {
+  return {
+    type: "PASS",
+    color: color
   };
 };
 
@@ -66,7 +74,14 @@ p_channel.map(function(channel) {
     size: 13
   });
 
-  var $commands = $board.clicks.map(_.partial(coordinates2command, channel.type));
+  var $pass = $Pass({
+    selector: "button.pass"
+  });
+
+  var $boardClicks = $board.clicks.map(_.partial(coordinates2command, channel.type));
+  var $passClicks = $pass.clicks.map(_.partial(pass2command, channel.type));
+
+  var $commands = $boardClicks.merge($passClicks);
 
   $commands.onValue(_.partial(GameController.play, controller));
   $commands.onValue(function(command) {
