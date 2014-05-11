@@ -21,17 +21,12 @@ function initGameController() {
 
       if(game.cumulativePassings >= 2) {
         controller.gameStates.end();
-        Controller.end(controller);
       }
     });
 
     result.mapError(function(error) {
       console.error(error.message);
     });
-  };
-
-  GameController.end = function(controller) {
-    alert("Game is over!");
   };
 
   return GameController;

@@ -57,4 +57,7 @@ Client.startChannel(client).map(function(channel) {
   };
 
   controller.gameStates.map(game2board).onValue(_.partial($Board.displayBoard, $board));
+  controller.gameStates.onEnd(function() {
+    alert("The game is over.");
+  });
 });

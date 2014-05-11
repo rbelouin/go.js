@@ -14,6 +14,21 @@ function initGame(Board) {
     };
   };
 
+  Game.checkEnd = function(game, command) {
+    var result = new Promise();
+
+    if(game.cumulativePassings >= 2) {
+      result.reject({
+        message: "Game is over!"
+      });
+    }
+    else {
+      result.resolve();
+    }
+
+    return result;
+  };
+
   Game.checkTurn = function(game, command) {
     var result = new Promise();
 
@@ -84,12 +99,19 @@ function initGame(Board) {
   };
 
   Game.pass = function(game, command) {
-    return Game.checkTurn(game, command).map(function() {
-      return _.extend(game, {
-        blackTurn: !game.blackTurn,
-        cumulativePassings: game.cumulativePassings + 1
+    return Promise.of()
+      .chain(function() {
+        return Game.checkEnd(game, command);
+      })
+      .chain(function() {
+        return Game.checkTurn(game, command);
+      })
+      .map(function() {
+        return _.extend(game, {
+          blackTurn: !game.blackTurn,
+          cumulativePassings: game.cumulativePassings + 1
+        });
       });
-    });
   };
 
   Game.play = function(game, command) {
@@ -101,6 +123,9 @@ function initGame(Board) {
     var result = new Promise();
 
     return Promise.of()
+      .chain(function() {
+        return Game.checkEnd(game, command);
+      })
       .chain(function() {
         return Game.checkTurn(game, command);
       })
