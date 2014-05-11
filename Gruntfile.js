@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  var files = ["src/models/board.js", "src/models/game.js", "src/models/webrtc-client.js", "src/models/ws-client.js", "src/views/board.js", "src/views/pass.js", "src/controllers/game.js"];
+  var files = ["src/models/board.js", "src/models/game.js", "src/models/webrtc-client.js", "src/models/ws-client.js", "src/models/client.js", "src/views/board.js", "src/views/pass.js", "src/controllers/game.js"];
 
   grunt.initConfig({
     bower_concat: {
