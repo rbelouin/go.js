@@ -24,10 +24,21 @@ module.exports = function(grunt) {
         specs: "tests/**/*.spec.js"
       }
     },
-    watch: {
+    less: {
       all: {
+        files: {
+          "all.css": "less/all.less"
+        }
+      }
+    },
+    watch: {
+      js: {
         files: files,
         tasks: ["concat", "jasmine"]
+      },
+      less: {
+        files: "less/**/*.less",
+        tasks: ["less"]
       }
     }
   });
@@ -35,6 +46,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-bower-concat");
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-jasmine");
+  grunt.loadNpmTasks("grunt-contrib-less");
   grunt.loadNpmTasks("grunt-contrib-watch");
 
   grunt.registerTask("start-test-server", function() {

@@ -4,33 +4,21 @@
 	<meta charset="UTF-8">
 	<title>Go.js</title>
 
+  <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+
   <script type="text/javascript" src="go.js"></script>
-
-  <style type="text/css">
-    svg.board {
-      background-color: #AAAAAA;
-    }
-
-    svg.board .grids line {
-      stroke: #000;
-      stroke-width: 1px;
-    }
-
-    svg.board .stones .stone.BLACK {
-      fill: #000;
-    }
-    svg.board .stones .stone.WHITE {
-      fill: #fff;
-    }
-  </style>
 </head>
 <body>
-	<h1><a href="/">Go.js</a></h1>
+  <main>
+    <h1><a href="/">Go.js</a></h1>
 
-  <div class="status">Wait for an opponent…</div>
+    <div class="headbar">
+      <div class="headbar-status status">Wait for an opponent…</div>
+      <button type="button" class="headbar-pass pass">Pass</button>
+    </div>
 
-  <button type="button" class="pass">Pass</button>
-  <svg class="board" height="400" width="400"></svg>
+    <svg class="board" height="400" width="400"></svg>
+  </main>
 
   <script type="text/javascript" src="src/main.js"></script>
 </body>

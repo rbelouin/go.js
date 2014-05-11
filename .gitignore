@@ -1,4 +1,5 @@
 *.swp
+/all.css
 /bower_components
 /dependencies.js
 /go.js
