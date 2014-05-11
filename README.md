@@ -1,6 +1,8 @@
 go.js
 =====
 
+[![Build Status](https://travis-ci.org/rbelouin/go.js.svg)](https://travis-ci.org/rbelouin/go.js)
+
 Go game, over WebRTC.
 
 How to run?
