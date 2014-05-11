@@ -1,6 +1,7 @@
 var Board = initBoard();
 var $Board = init$Board();
 var $Pass = init$Pass();
+var $Status = init$Status();
 var GameController = initGameController();
 var Client = initClient(initWSClient, initWebRTCClient);
 
@@ -24,6 +25,11 @@ var game2board = function(game) {
   return game.board;
 };
 
+var game2message = function(color, game) {
+  var opponentColor = color == Board.types.BLACK ? Board.types.WHITE : Board.types.BLACK;
+  return (game.blackTurn == (color === Board.types.BLACK)) ? "It's your turn." : "It's " + opponentColor.toLowerCase() + " turn.";
+};
+
 var client = Client({host: "http://127.0.0.1:8080"});
 
 Client.startChannel(client).map(function(channel) {
@@ -39,6 +45,10 @@ Client.startChannel(client).map(function(channel) {
 
   var $pass = $Pass({
     selector: "button.pass"
+  });
+
+  var $status = $Status({
+    selector: ".status"
   });
 
   var $boardClicks = $board.clicks.map(_.partial(coordinates2command, channel.color));
@@ -57,7 +67,10 @@ Client.startChannel(client).map(function(channel) {
   };
 
   controller.gameStates.map(game2board).onValue(_.partial($Board.displayBoard, $board));
+  controller.gameStates.map(_.partial(game2message, channel.color)).onValue(_.partial($Status.update, $status));
   controller.gameStates.onEnd(function() {
     alert("The game is over.");
   });
+
+  $Status.update($status, channel.color == Board.types.BLACK ? "You're black, you begin." : "You're white, it's your opponent turn.");
 });
