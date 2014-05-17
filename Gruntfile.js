@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  var files = ["src/models/board.js", "src/models/game.js", "src/models/webrtc-client.js", "src/models/ws-client.js", "src/models/client.js", "src/views/board.js", "src/views/pass.js", "src/views/status.js", "src/controllers/game.js"];
+  var files = ["src/models/board.js", "src/models/game.js", "src/models/score.js", "src/models/webrtc-client.js", "src/models/ws-client.js", "src/models/client.js", "src/views/board.js", "src/views/pass.js", "src/views/status.js", "src/views/score.js", "src/controllers/game.js"];
 
   grunt.initConfig({
     bower_concat: {
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: files,
-        tasks: ["concat", "jasmine"]
+        tasks: ["concat"]
       },
       less: {
         files: "less/**/*.less",
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
     server.start();
   });
 
-  grunt.registerTask("build", ["bower_concat", "concat"]);
+  grunt.registerTask("build", ["bower_concat", "concat", "less"]);
   grunt.registerTask("test", ["start-test-server", "jasmine"]);
 
   grunt.registerTask("default", ["build", "test"]);

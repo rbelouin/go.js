@@ -1,0 +1,76 @@
+.sidebar {
+  background: url("/img/blue-noise.png");
+  border: 1px solid @blue-d10;
+  border-radius: 3px;
+  color: @white;
+  display: inline-block;
+  vertical-align: top;
+  width: 138px;
+
+  menu {
+    margin: 0;
+    padding: 10px 10px 0;
+
+    .btn {
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  }
+
+  .sidebar-score {
+    background: @blue-d20;
+    box-shadow: inset 0 1px 3px @blue-d40, inset 0 -1px 3px @blue-d40;
+
+    section {
+      text-align: center;
+
+      h6 {
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0;
+      }
+
+      &:last-child {
+        padding-bottom: 10px;
+      }
+    }
+
+    section.sidebar-score-global {
+      font-size: 36px;
+      font-weight: bold;
+      line-height: 40px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+
+      h6 {
+        color: @blue-d40;
+        font-style: italic;
+        font-weight: normal;
+        text-shadow: 0 1px 1px @blue-l20;
+      }
+    }
+
+    hr {
+      border-top: 1px solid @blue-d40;
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
+      border-left: none;
+      border-right: none;
+      height: 0;
+      margin: 9px 10px;
+    }
+  }
+
+  .sidebar-leave {
+    color: @blue-d40;
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 20px 0 10px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 1px @blue-l20;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

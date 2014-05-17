@@ -14,7 +14,28 @@
 
     <div class="headbar">
       <div class="headbar-status status">Wait for an opponent…</div>
-      <button type="button" class="headbar-pass pass">Pass</button>
+    </div>
+
+    <div class="sidebar">
+      <menu>
+        <button type="button" class="btn btn-red pass">Pass</button>
+      </menu>
+      <div class="sidebar-score">
+        <section class="sidebar-score-global">
+          <h6>score</h6>
+          <div class="score">&nbsp;</div>
+        </section>
+        <hr/>
+        <section class="black">
+          <h6>black</h6>
+          <span class="territory">0</span> (<span class="prisoners">0</span>)
+        </section>
+        <hr/>
+        <section class="white">
+          <h6>white</h6>
+          <span class="territory">0</span> (<span class="prisoners">0</span>)
+        </section>
+      </div>
     </div>
 
     <svg class="board" height="400" width="400"></svg>

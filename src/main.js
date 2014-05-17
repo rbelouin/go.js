@@ -1,7 +1,9 @@
 var Board = initBoard();
+var Score = initScore(initBoard);
 var $Board = init$Board();
 var $Pass = init$Pass();
 var $Status = init$Status();
+var $Score = init$Score();
 var GameController = initGameController();
 var Client = initClient(initWSClient, initWebRTCClient);
 
@@ -51,6 +53,10 @@ Client.startChannel(client).map(function(channel) {
     selector: ".status"
   });
 
+  var $score = $Score({
+    selector: ".sidebar-score"
+  });
+
   var $boardClicks = $board.clicks.map(_.partial(coordinates2command, channel.color));
   var $passClicks = $pass.clicks.map(_.partial(pass2command, channel.color));
 
@@ -68,6 +74,7 @@ Client.startChannel(client).map(function(channel) {
 
   controller.gameStates.map(game2board).onValue(_.partial($Board.displayBoard, $board));
   controller.gameStates.map(_.partial(game2message, channel.color)).onValue(_.partial($Status.update, $status));
+  controller.gameStates.map(_.partial(Score.scoreFromGame, channel.color)).onValue(_.partial($Score.update, $score));
   controller.gameStates.onEnd(function() {
     alert("The game is over.");
   });
