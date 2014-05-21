@@ -50,7 +50,7 @@ Client.startChannel(client).map(function(channel) {
   });
 
   var $status = $Status({
-    selector: ".status"
+    selector: ".headbar"
   });
 
   var $score = $Score({
@@ -71,6 +71,10 @@ Client.startChannel(client).map(function(channel) {
     var command = JSON.parse(message.data);
     GameController.play(controller, command);
   };
+
+  controller.gameStates.take(1).onValue(function() {
+    $Status.start($status);
+  });
 
   controller.gameStates.map(game2board).onValue(_.partial($Board.displayBoard, $board));
   controller.gameStates.map(_.partial(game2message, channel.color)).onValue(_.partial($Status.update, $status));
