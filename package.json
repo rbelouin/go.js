@@ -2,7 +2,6 @@
   "name": "go.js",
   "version": "0.0.0",
   "description": "Go game, in your brower, using WebRTC.",
-  "main": "go.js",
   "keywords": [
     "go",
     "game",
