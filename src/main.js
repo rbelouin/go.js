@@ -32,7 +32,7 @@ var game2message = function(color, game) {
   return (game.blackTurn == (color === Board.types.BLACK)) ? "It's your turn." : "It's " + opponentColor.toLowerCase() + " turn.";
 };
 
-var client = Client({host: "http://127.0.0.1:8080"});
+var client = Client({host: window.location.protocol + "//" + window.location.host});
 
 Client.startChannel(client).map(function(channel) {
   var controller = GameController({
