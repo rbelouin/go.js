@@ -23,7 +23,9 @@ var initWebRTCClient = function() {
 
   var WebRTCClient = function() {
     return {
-      connection: new Connection(),
+      connection: new Connection({
+        iceServers: []
+      }),
       channel: new Promise()
     };
   };
