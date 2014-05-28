@@ -49,13 +49,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-less");
   grunt.loadNpmTasks("grunt-contrib-watch");
 
+  var server = require("./tests/server.js");
   grunt.registerTask("start-test-server", function() {
-    var server = require("./tests/server.js");
     server.start();
+  });
+  grunt.registerTask("stop-test-server", function() {
+    server.stop();
   });
 
   grunt.registerTask("build", ["bower_concat", "concat", "less"]);
-  grunt.registerTask("test", ["start-test-server", "jasmine"]);
+  grunt.registerTask("test", ["start-test-server", "jasmine", "stop-test-server"]);
 
   grunt.registerTask("default", ["build", "test"]);
 };
